@@ -68,6 +68,16 @@ public class ResultConstant {
     public static final String METHOD_NOT_ALLOWED_MSG = "请求方式错误";
 
     /**
+     * Content-Type 错误编码
+     */
+    public static final int UNSUPPORTED_MEDIA_TYPE_CODE = 415;
+
+    /**
+     * Content-Type 错误消息
+     */
+    public static final String UNSUPPORTED_MEDIA_TYPE_MSG = "Content-Type 错误";
+
+    /**
      * 服务器内部错误编码
      */
     public static final int INTERNAL_SERVER_ERROR_CODE = 500;

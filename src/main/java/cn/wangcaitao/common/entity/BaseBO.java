@@ -9,9 +9,4 @@ import lombok.Data;
  */
 @Data
 public class BaseBO {
-
-    /**
-     * id
-     */
-    private Long id;
 }
