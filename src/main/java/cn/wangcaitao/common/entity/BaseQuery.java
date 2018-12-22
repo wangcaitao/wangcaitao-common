@@ -1,14 +1,10 @@
 package cn.wangcaitao.common.entity;
 
 import cn.wangcaitao.common.constant.BadRequestMsgConstant;
-import cn.wangcaitao.common.constant.OrderTypeConstant;
 import cn.wangcaitao.common.constant.PageConstant;
 import cn.wangcaitao.common.constant.ResultConstant;
 import cn.wangcaitao.common.exception.ResultException;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.Objects;
 
 /**
  * 基础查询
@@ -29,14 +25,14 @@ public class BaseQuery {
     private Integer pageSize = PageConstant.DEFAULT_PAGE_SIZE;
 
     /**
-     * 排序列名
+     * 升序列名
      */
-    private String orderColumnName;
+    private String[] orderByAscColumns;
 
     /**
-     * 排序类型 (ASC: 升序, DESC: 降序)
+     * 降序列名
      */
-    private String orderType;
+    private String[] orderByDescColumns;
 
     /**
      * 参数校验
@@ -53,16 +49,6 @@ public class BaseQuery {
     public void validate(boolean isValidatePageSize) {
         if (isValidatePageSize && pageSize > PageConstant.MAX_PAGE_SIZE) {
             throw new ResultException(ResultConstant.BAD_REQUEST_CODE, BadRequestMsgConstant.OVER_MAX_PAGE_SIZE);
-        }
-
-        if (StringUtils.isNotEmpty(orderType)) {
-            if (StringUtils.isEmpty(orderColumnName)) {
-                throw new ResultException(ResultConstant.BAD_REQUEST_CODE, BadRequestMsgConstant.NOT_EMPTY_ORDER_COLUMN_NAME);
-            }
-
-            if (!Objects.equals(OrderTypeConstant.ASC, orderType.toUpperCase()) || !Objects.equals(OrderTypeConstant.DESC, orderType.toUpperCase())) {
-                throw new ResultException(ResultConstant.BAD_REQUEST_CODE, BadRequestMsgConstant.NOT_EQUALS_ORDER_TYPE);
-            }
         }
     }
 }
