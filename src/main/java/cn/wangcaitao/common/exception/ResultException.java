@@ -1,8 +1,6 @@
 package cn.wangcaitao.common.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -12,8 +10,6 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class ResultException extends RuntimeException {
 
     /**
@@ -25,4 +21,20 @@ public class ResultException extends RuntimeException {
      * 说明
      */
     private String msg;
+
+    /**
+     * 请求参数
+     */
+    private String params;
+
+    public ResultException(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public ResultException(int code, String msg, String params) {
+        this.code = code;
+        this.msg = msg;
+        this.params = params;
+    }
 }
