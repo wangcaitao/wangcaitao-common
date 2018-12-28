@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author wangcaitao
  */
-public interface BaseService<BO, DTO, Q extends BaseQuery> {
+public interface BaseService<BO, SAVE_DTO, UPDATE_DTO, Q extends BaseQuery> {
 
     /**
      * 根据 id 查询
@@ -51,7 +51,7 @@ public interface BaseService<BO, DTO, Q extends BaseQuery> {
      * @param entity dto entity
      * @return Result
      */
-    Result save(DTO entity);
+    Result save(SAVE_DTO entity);
 
     /**
      * 批量保存
@@ -59,7 +59,7 @@ public interface BaseService<BO, DTO, Q extends BaseQuery> {
      * @param entities entities
      * @return Result
      */
-    Result batchSave(List<DTO> entities);
+    Result batchSave(List<SAVE_DTO> entities);
 
     /**
      * 修改
@@ -67,7 +67,7 @@ public interface BaseService<BO, DTO, Q extends BaseQuery> {
      * @param entity dto entity
      * @return Result
      */
-    Result update(DTO entity);
+    Result update(UPDATE_DTO entity);
 
     /**
      * 批量修改
@@ -75,7 +75,7 @@ public interface BaseService<BO, DTO, Q extends BaseQuery> {
      * @param entities entities
      * @return Result
      */
-    Result batchUpdate(List<DTO> entities);
+    Result batchUpdate(List<UPDATE_DTO> entities);
 
     /**
      * 删除
