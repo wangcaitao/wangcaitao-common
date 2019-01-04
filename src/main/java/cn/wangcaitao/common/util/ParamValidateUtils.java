@@ -31,6 +31,18 @@ public class ParamValidateUtils {
      *
      * @param param        参数
      * @param paramComment 参数描述
+     */
+    public static void validateStringEmpty(String param, String paramComment) {
+        if (StringUtils.isEmpty(param)) {
+            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+        }
+    }
+
+    /**
+     * 校验字符串
+     *
+     * @param param        参数
+     * @param paramComment 参数描述
      * @param maxLength    最大字符长度
      */
     public static void validateStringEmpty(String param, String paramComment, int maxLength) {
@@ -40,6 +52,18 @@ public class ParamValidateUtils {
 
         if (maxLength < param.length()) {
             throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 最大 " + maxLength + " 个字符");
+        }
+    }
+
+    /**
+     * 校验字符串
+     *
+     * @param param        参数
+     * @param paramComment 参数描述
+     */
+    public static void validateStringBlank(String param, String paramComment) {
+        if (StringUtils.isBlank(param)) {
+            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
         }
     }
 
