@@ -4,6 +4,8 @@ import cn.wangcaitao.common.constant.ResultConstant;
 import cn.wangcaitao.common.exception.ResultException;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.List;
+
 /**
  * 基本参数校验
  *
@@ -92,6 +94,30 @@ public class ParamValidateUtils {
      */
     public static void validateObjectNull(Object param, String paramComment) {
         if (null == param) {
+            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+        }
+    }
+
+    /**
+     * 校验列表是否为空
+     *
+     * @param param        参数
+     * @param paramComment 参数描述
+     */
+    public static void validateListEmpty(List param, String paramComment) {
+        if (null == param || param.isEmpty()) {
+            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+        }
+    }
+
+    /**
+     * 校验数组是否为空
+     *
+     * @param param        参数
+     * @param paramComment 参数描述
+     */
+    public static void validateArrayEmpty(Object[] param, String paramComment) {
+        if (null == param || 0 == param.length) {
             throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
         }
     }
