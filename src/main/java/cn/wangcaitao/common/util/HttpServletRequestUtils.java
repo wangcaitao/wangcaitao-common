@@ -1,7 +1,7 @@
 package cn.wangcaitao.common.util;
 
+import cn.wangcaitao.common.constant.CharConstant;
 import cn.wangcaitao.common.constant.HttpHeaderConstant;
-import cn.wangcaitao.common.constant.ResultConstant;
 import cn.wangcaitao.common.exception.ResultException;
 import org.apache.commons.lang3.StringUtils;
 
@@ -22,12 +22,12 @@ public class HttpServletRequestUtils {
      */
     public static String getRemoteAddr(HttpServletRequest request) {
         if (null == request) {
-            throw new ResultException(ResultConstant.INTERNAL_SERVER_ERROR_CODE, ResultConstant.INTERNAL_SERVER_ERROR_MSG);
+            throw new ResultException();
         }
 
         String ip = request.getHeader(HttpHeaderConstant.KEY_X_FORWARDED_FOR);
         if (StringUtils.isNotEmpty(ip) && !HttpHeaderConstant.VALUE_UNKNOWN.equalsIgnoreCase(ip)) {
-            int index = ip.indexOf(",");
+            int index = ip.indexOf(CharConstant.COMMA);
             if (index != -1) {
                 return ip.substring(0, index);
             } else {

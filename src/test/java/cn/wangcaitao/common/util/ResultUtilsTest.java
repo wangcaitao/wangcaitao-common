@@ -1,9 +1,10 @@
 package cn.wangcaitao.common.util;
 
+import cn.wangcaitao.common.constant.HttpStatusConstant;
 import cn.wangcaitao.common.constant.PageConstant;
-import cn.wangcaitao.common.constant.ResultConstant;
 import cn.wangcaitao.common.entity.Pagination;
 import cn.wangcaitao.common.entity.Result;
+import cn.wangcaitao.common.exception.ResultException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -22,19 +23,19 @@ public class ResultUtilsTest {
     @Test
     public void shouldSuccessWhenReturn() {
         Result<Object> defaultResult = ResultUtils.success();
-        Assert.assertEquals(ResultConstant.OK_CODE, defaultResult.getCode());
-        Assert.assertEquals(ResultConstant.OK_MSG, defaultResult.getMsg());
+        Assert.assertEquals(HttpStatusConstant.OK_CODE, defaultResult.getCode());
+        Assert.assertEquals(HttpStatusConstant.OK_MSG, defaultResult.getMsg());
         Assert.assertNull(defaultResult.getData());
 
         String data = "hello world";
         Result<String> customizeDataResult = ResultUtils.success(data);
-        Assert.assertEquals(ResultConstant.OK_CODE, customizeDataResult.getCode());
-        Assert.assertEquals(ResultConstant.OK_MSG, customizeDataResult.getMsg());
+        Assert.assertEquals(HttpStatusConstant.OK_CODE, customizeDataResult.getCode());
+        Assert.assertEquals(HttpStatusConstant.OK_MSG, customizeDataResult.getMsg());
         Assert.assertEquals(data, customizeDataResult.getData());
 
         String msg = "pass success";
         Result<String> customizeMsgAndDataResult = ResultUtils.success(msg, data);
-        Assert.assertEquals(ResultConstant.OK_CODE, customizeMsgAndDataResult.getCode());
+        Assert.assertEquals(HttpStatusConstant.OK_CODE, customizeMsgAndDataResult.getCode());
         Assert.assertEquals(msg, customizeMsgAndDataResult.getMsg());
         Assert.assertEquals(data, customizeMsgAndDataResult.getData());
     }
@@ -45,13 +46,13 @@ public class ResultUtilsTest {
     @Test
     public void shouldErrorWhenReturn() {
         Result<Object> defaultResult = ResultUtils.error();
-        Assert.assertEquals(ResultConstant.BAD_REQUEST_CODE, defaultResult.getCode());
-        Assert.assertEquals(ResultConstant.BAD_REQUEST_MSG, defaultResult.getMsg());
+        Assert.assertEquals(HttpStatusConstant.INTERNAL_SERVER_ERROR_CODE, defaultResult.getCode());
+        Assert.assertEquals(HttpStatusConstant.INTERNAL_SERVER_ERROR_MSG, defaultResult.getMsg());
         Assert.assertNull(defaultResult.getData());
 
         String msg = "pass error";
         Result<Object> customizeMsgResult = ResultUtils.error(msg);
-        Assert.assertEquals(ResultConstant.BAD_REQUEST_CODE, customizeMsgResult.getCode());
+        Assert.assertEquals(HttpStatusConstant.INTERNAL_SERVER_ERROR_CODE, customizeMsgResult.getCode());
         Assert.assertEquals(msg, customizeMsgResult.getMsg());
         Assert.assertNull(customizeMsgResult.getData());
 
@@ -74,8 +75,8 @@ public class ResultUtilsTest {
     @Test
     public void shouldSuccessWhenPagination() {
         Result<Pagination<Object>> defaultPaginationResult = ResultUtils.success(new Pagination<>());
-        Assert.assertEquals(ResultConstant.OK_CODE, defaultPaginationResult.getCode());
-        Assert.assertEquals(ResultConstant.OK_MSG, defaultPaginationResult.getMsg());
+        Assert.assertEquals(HttpStatusConstant.OK_CODE, defaultPaginationResult.getCode());
+        Assert.assertEquals(HttpStatusConstant.OK_MSG, defaultPaginationResult.getMsg());
         Pagination<Object> defaultPagination = defaultPaginationResult.getData();
         Assert.assertEquals(PageConstant.DEFAULT_PAGE_NUM, defaultPagination.getPageNum());
         Assert.assertEquals(PageConstant.DEFAULT_PAGE_SIZE, defaultPagination.getPageSize());
@@ -89,8 +90,8 @@ public class ResultUtilsTest {
         int listSize = list.size();
 
         Result<Pagination<String>> defaultPaginationWithDataResult = ResultUtils.success(new Pagination<>(listSize, list));
-        Assert.assertEquals(ResultConstant.OK_CODE, defaultPaginationWithDataResult.getCode());
-        Assert.assertEquals(ResultConstant.OK_MSG, defaultPaginationWithDataResult.getMsg());
+        Assert.assertEquals(HttpStatusConstant.OK_CODE, defaultPaginationWithDataResult.getCode());
+        Assert.assertEquals(HttpStatusConstant.OK_MSG, defaultPaginationWithDataResult.getMsg());
         Pagination<String> defaultPaginationWithData = defaultPaginationWithDataResult.getData();
         Assert.assertEquals(PageConstant.DEFAULT_PAGE_NUM, defaultPaginationWithData.getPageNum());
         Assert.assertEquals(PageConstant.DEFAULT_PAGE_SIZE, defaultPaginationWithData.getPageSize());
@@ -103,8 +104,8 @@ public class ResultUtilsTest {
         int pageSize = 20;
 
         Result<Pagination<String>> customizePaginationResult = ResultUtils.success(new Pagination<>(pageNum, pageSize, listSize, list));
-        Assert.assertEquals(ResultConstant.OK_CODE, customizePaginationResult.getCode());
-        Assert.assertEquals(ResultConstant.OK_MSG, customizePaginationResult.getMsg());
+        Assert.assertEquals(HttpStatusConstant.OK_CODE, customizePaginationResult.getCode());
+        Assert.assertEquals(HttpStatusConstant.OK_MSG, customizePaginationResult.getMsg());
         Pagination<String> customizePagination = customizePaginationResult.getData();
         Assert.assertEquals(pageNum, customizePagination.getPageNum());
         Assert.assertEquals(pageSize, customizePagination.getPageSize());
@@ -112,5 +113,51 @@ public class ResultUtilsTest {
         Assert.assertEquals(listSize, customizePagination.getRows());
         List<String> customizePaginationData = customizePagination.getData();
         Assert.assertEquals(data, customizePaginationData.get(0));
+    }
+
+    @Test
+    public void shouldSuccessWhenGetData() {
+        try {
+            ResultUtils.getData(null);
+        } catch (ResultException e) {
+            Assert.assertEquals(HttpStatusConstant.INTERNAL_SERVER_ERROR_CODE, e.getCode());
+            Assert.assertEquals(HttpStatusConstant.INTERNAL_SERVER_ERROR_MSG, e.getMsg());
+        }
+
+        String data = "test";
+        Result<String> result = ResultUtils.success(data);
+        Assert.assertEquals(data, ResultUtils.getData(result));
+
+        result = ResultUtils.error();
+        try {
+            ResultUtils.getData(result);
+        } catch (ResultException e) {
+            Assert.assertEquals(HttpStatusConstant.INTERNAL_SERVER_ERROR_CODE, e.getCode());
+            Assert.assertEquals(HttpStatusConstant.INTERNAL_SERVER_ERROR_MSG, e.getMsg());
+        }
+    }
+
+    @Test
+    public void shouldSuccessWhenGetPaginationData() {
+        try {
+            ResultUtils.getPaginationData(null);
+        } catch (ResultException e) {
+            Assert.assertEquals(HttpStatusConstant.INTERNAL_SERVER_ERROR_CODE, e.getCode());
+            Assert.assertEquals(HttpStatusConstant.INTERNAL_SERVER_ERROR_MSG, e.getMsg());
+        }
+
+        try {
+            Pagination<String> defaultPagination = ResultUtils.getPagination(ResultUtils.success(null));
+        } catch (ResultException e) {
+            Assert.assertEquals(HttpStatusConstant.INTERNAL_SERVER_ERROR_CODE, e.getCode());
+            Assert.assertEquals(HttpStatusConstant.INTERNAL_SERVER_ERROR_MSG, e.getMsg());
+        }
+
+        List<String> list = new ArrayList<>();
+        String data = "first";
+        list.add(data);
+        int listSize = list.size();
+        List<String> defaultPaginationData = ResultUtils.getPaginationData(ResultUtils.success(new Pagination<>(listSize, list)));
+        Assert.assertEquals(data, defaultPaginationData.get(0));
     }
 }

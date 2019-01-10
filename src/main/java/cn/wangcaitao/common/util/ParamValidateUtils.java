@@ -1,6 +1,6 @@
 package cn.wangcaitao.common.util;
 
-import cn.wangcaitao.common.constant.ResultConstant;
+import cn.wangcaitao.common.constant.HttpStatusConstant;
 import cn.wangcaitao.common.exception.ResultException;
 import org.apache.commons.lang3.StringUtils;
 
@@ -20,11 +20,11 @@ public class ParamValidateUtils {
      */
     public static void validateId(Long id) {
         if (null == id) {
-            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, "id 不能为空");
+            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, "id 不能为空");
         }
 
         if (1 > id) {
-            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, "id 无效");
+            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, "id 无效");
         }
     }
 
@@ -36,7 +36,7 @@ public class ParamValidateUtils {
      */
     public static void validateStringEmpty(String param, String paramComment) {
         if (StringUtils.isEmpty(param)) {
-            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
         }
     }
 
@@ -49,11 +49,11 @@ public class ParamValidateUtils {
      */
     public static void validateStringEmpty(String param, String paramComment, int maxLength) {
         if (StringUtils.isEmpty(param)) {
-            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
         }
 
         if (maxLength < param.length()) {
-            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 最大 " + maxLength + " 个字符");
+            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 最大 " + maxLength + " 个字符");
         }
     }
 
@@ -65,7 +65,7 @@ public class ParamValidateUtils {
      */
     public static void validateStringBlank(String param, String paramComment) {
         if (StringUtils.isBlank(param)) {
-            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
         }
     }
 
@@ -78,11 +78,11 @@ public class ParamValidateUtils {
      */
     public static void validateStringBlank(String param, String paramComment, int maxLength) {
         if (StringUtils.isBlank(param)) {
-            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
         }
 
         if (maxLength < param.length()) {
-            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 最大 " + maxLength + " 个字符");
+            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 最大 " + maxLength + " 个字符");
         }
     }
 
@@ -94,7 +94,7 @@ public class ParamValidateUtils {
      */
     public static void validateObjectNull(Object param, String paramComment) {
         if (null == param) {
-            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
         }
     }
 
@@ -106,7 +106,7 @@ public class ParamValidateUtils {
      */
     public static void validateListEmpty(List param, String paramComment) {
         if (null == param || param.isEmpty()) {
-            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
         }
     }
 
@@ -118,7 +118,7 @@ public class ParamValidateUtils {
      */
     public static void validateArrayEmpty(Object[] param, String paramComment) {
         if (null == param || 0 == param.length) {
-            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
         }
     }
 }

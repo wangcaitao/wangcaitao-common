@@ -118,6 +118,16 @@ public class CharConstant {
     public static final String CLOSE_PARENTHESIS = ")";
 
     /**
+     * 左尖括号
+     */
+    public static final String OPEN_ANGLE_BRACKET = "<";
+
+    /**
+     * 右尖括号
+     */
+    public static final String CLOSE_ANGLE_BRACKET = ">";
+
+    /**
      * 加号
      */
     public static final String PLUS = "+";
@@ -146,4 +156,34 @@ public class CharConstant {
      * 井号
      */
     public static final String POUND = "#";
+
+    /**
+     * 星号
+     */
+    public static final String STAR = "*";
+
+    /**
+     * @
+     */
+    public static final String AT = "@";
+
+    /**
+     * &
+     */
+    public static final String AND = "&";
+
+    /**
+     * %
+     */
+    public static final String PERCENT = "%";
+
+    /**
+     * $
+     */
+    public static final String DOLLAR = "$";
+
+    /**
+     * ￥
+     */
+    public static final String RMB = "￥";
 }

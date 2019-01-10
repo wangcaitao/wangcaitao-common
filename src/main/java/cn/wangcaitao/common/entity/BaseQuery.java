@@ -1,8 +1,8 @@
 package cn.wangcaitao.common.entity;
 
 import cn.wangcaitao.common.constant.BadRequestMsgConstant;
+import cn.wangcaitao.common.constant.HttpStatusConstant;
 import cn.wangcaitao.common.constant.PageConstant;
-import cn.wangcaitao.common.constant.ResultConstant;
 import cn.wangcaitao.common.exception.ResultException;
 import lombok.Data;
 
@@ -48,7 +48,7 @@ public class BaseQuery {
      */
     public void validate(boolean isValidatePageSize) {
         if (isValidatePageSize && pageSize > PageConstant.MAX_PAGE_SIZE) {
-            throw new ResultException(ResultConstant.BAD_REQUEST_CODE, BadRequestMsgConstant.OVER_MAX_PAGE_SIZE);
+            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, BadRequestMsgConstant.OVER_MAX_PAGE_SIZE);
         }
     }
 }

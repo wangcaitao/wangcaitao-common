@@ -8,7 +8,7 @@
 <dependency>
     <groupId>cn.wangcaitao</groupId>
     <artifactId>wangcaitao-common</artifactId>
-    <versiion>${last.version}</version>
+    <versiion>1.0.0</version>
 </dependency>
 ```
 

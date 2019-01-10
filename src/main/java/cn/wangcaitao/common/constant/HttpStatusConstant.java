@@ -5,7 +5,7 @@ package cn.wangcaitao.common.constant;
  *
  * @author wangcaitao
  */
-public class ResultConstant {
+public class HttpStatusConstant {
 
     /**
      * 成功编码
