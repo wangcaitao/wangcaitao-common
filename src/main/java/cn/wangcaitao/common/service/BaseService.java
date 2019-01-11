@@ -35,7 +35,7 @@ public interface BaseService<BO, SAVE_DTO, UPDATE_DTO, Q extends BaseQuery> {
      * @param ids ids
      * @return Result
      */
-    Result<List<BO>> listByIds(Long[] ids);
+    Result<List<BO>> list(List<Long> ids);
 
     /**
      * 分页查询
@@ -59,7 +59,7 @@ public interface BaseService<BO, SAVE_DTO, UPDATE_DTO, Q extends BaseQuery> {
      * @param entities entities
      * @return Result
      */
-    Result batchSave(List<SAVE_DTO> entities);
+    Result save(List<SAVE_DTO> entities);
 
     /**
      * 修改
@@ -75,7 +75,7 @@ public interface BaseService<BO, SAVE_DTO, UPDATE_DTO, Q extends BaseQuery> {
      * @param entities entities
      * @return Result
      */
-    Result batchUpdate(List<UPDATE_DTO> entities);
+    Result update(List<UPDATE_DTO> entities);
 
     /**
      * 删除
@@ -91,5 +91,5 @@ public interface BaseService<BO, SAVE_DTO, UPDATE_DTO, Q extends BaseQuery> {
      * @param ids ids
      * @return Result
      */
-    Result deleteByIds(Long[] ids);
+    Result delete(List<Long> ids);
 }
