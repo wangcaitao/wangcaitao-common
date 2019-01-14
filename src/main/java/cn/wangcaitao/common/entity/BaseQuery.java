@@ -35,6 +35,11 @@ public class BaseQuery {
     private String[] orderByDescColumns;
 
     /**
+     * 是否需要分页, 默认分页. 0: 不需要, 1: 需要
+     */
+    private Boolean pagination = true;
+
+    /**
      * 参数校验
      */
     public void validate() {

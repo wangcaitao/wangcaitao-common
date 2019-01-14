@@ -1,7 +1,6 @@
 package cn.wangcaitao.common.service;
 
 import cn.wangcaitao.common.entity.BaseQuery;
-import cn.wangcaitao.common.entity.Pagination;
 import cn.wangcaitao.common.entity.Result;
 
 import java.util.List;
@@ -22,28 +21,12 @@ public interface BaseService<BO, SAVE_DTO, UPDATE_DTO, Q extends BaseQuery> {
     Result<BO> getById(Long id);
 
     /**
-     * 查询全部列表
+     * 列表查询
      *
      * @param query 查询实体
      * @return Result
      */
     Result<List<BO>> list(Q query);
-
-    /**
-     * 根据 ids 获取列表
-     *
-     * @param ids ids
-     * @return Result
-     */
-    Result<List<BO>> list(List<Long> ids);
-
-    /**
-     * 分页查询
-     *
-     * @param query 查询实体
-     * @return Result
-     */
-    Result<Pagination<BO>> pagination(Q query);
 
     /**
      * 保存

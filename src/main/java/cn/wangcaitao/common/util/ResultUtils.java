@@ -51,6 +51,50 @@ public class ResultUtils {
     }
 
     /**
+     * 分页查询 - 请求成功<br>
+     * default code: 200
+     *
+     * @param rows 总行数
+     * @param data 数据集合
+     * @param <T>  T
+     * @return Result
+     */
+    public static <T> Result<T> pagination(long rows, T data) {
+        return new Result<>(rows, data);
+    }
+
+    /**
+     * 分页查询 - 请求成功<br>
+     * default code: 200
+     *
+     * @param pageNum  当前页码
+     * @param pageSize 每页大小
+     * @param rows     总行数
+     * @param data     数据集合
+     * @param <T>      T
+     * @return Result
+     */
+    public static <T> Result<T> pagination(int pageNum, int pageSize, long rows, T data) {
+        return new Result<>(pageNum, pageSize, rows, data);
+    }
+
+    /**
+     * 分页查询 - 请求成功<br>
+     * default code: 200
+     *
+     * @param pageNum  当前页码
+     * @param pageSize 每页大小
+     * @param pages    总页数
+     * @param rows     总行数
+     * @param data     数据集合
+     * @param <T>      T
+     * @return Result
+     */
+    public static <T> Result<T> pagination(int pageNum, int pageSize, long pages, long rows, T data) {
+        return new Result<>(pageNum, pageSize, pages, rows, data);
+    }
+
+    /**
      * 请求错误<br>
      * default code: 500<br>
      * default msg: 请求错误

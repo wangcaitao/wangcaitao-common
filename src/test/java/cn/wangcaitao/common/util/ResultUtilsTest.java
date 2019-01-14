@@ -160,4 +160,42 @@ public class ResultUtilsTest {
         List<String> defaultPaginationData = ResultUtils.getPaginationData(ResultUtils.success(new Pagination<>(listSize, list)));
         Assert.assertEquals(data, defaultPaginationData.get(0));
     }
+
+    @Test
+    public void shouldSuccessWhenReturnPagination() {
+        int pageNum = 1;
+        int pageSize = 10;
+        long pages = 2;
+        long rows = 11;
+        List<String> list = new ArrayList<>();
+        String data = "first";
+        list.add(data);
+        Result<List<String>> paginationResult = ResultUtils.pagination(rows, list);
+        Assert.assertEquals(HttpStatusConstant.OK_CODE, paginationResult.getCode());
+        Assert.assertEquals(HttpStatusConstant.OK_MSG, paginationResult.getMsg());
+        Assert.assertEquals(pageNum, paginationResult.getPageNum().intValue());
+        Assert.assertEquals(pageSize, paginationResult.getPageSize().intValue());
+        Assert.assertEquals(pages, paginationResult.getPages().longValue());
+        Assert.assertEquals(rows, paginationResult.getRows().longValue());
+        Assert.assertEquals(data, paginationResult.getData().get(0));
+
+        Result<List<String>> paginationResult2 = ResultUtils.pagination(pageNum, pageSize, rows, list);
+        Assert.assertEquals(HttpStatusConstant.OK_CODE, paginationResult2.getCode());
+        Assert.assertEquals(HttpStatusConstant.OK_MSG, paginationResult2.getMsg());
+        Assert.assertEquals(pageNum, paginationResult2.getPageNum().intValue());
+        Assert.assertEquals(pageSize, paginationResult2.getPageSize().intValue());
+        Assert.assertEquals(pages, paginationResult2.getPages().longValue());
+        Assert.assertEquals(rows, paginationResult2.getRows().longValue());
+        Assert.assertEquals(data, paginationResult2.getData().get(0));
+
+        Result<List<String>> paginationResult3 = ResultUtils.pagination(pageNum, pageSize, pages, rows, list);
+        Assert.assertEquals(HttpStatusConstant.OK_CODE, paginationResult3.getCode());
+        Assert.assertEquals(HttpStatusConstant.OK_MSG, paginationResult3.getMsg());
+        Assert.assertEquals(pageNum, paginationResult3.getPageNum().intValue());
+        Assert.assertEquals(pageSize, paginationResult3.getPageSize().intValue());
+        Assert.assertEquals(pages, paginationResult3.getPages().longValue());
+        Assert.assertEquals(rows, paginationResult3.getRows().longValue());
+        Assert.assertEquals(data, paginationResult3.getData().get(0));
+
+    }
 }

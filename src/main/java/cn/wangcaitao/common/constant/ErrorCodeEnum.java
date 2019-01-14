@@ -20,7 +20,17 @@ public enum ErrorCodeEnum {
     /**
      * 1002 - 已经是最后一个了
      */
-    LAST(1002, "已经是最后一个了"),;
+    LAST(1002, "已经是最后一个了"),
+
+    /**
+     * 1003 - 暂不支持分页查询
+     */
+    NOT_SUPPORT_PAGINATION_QUERY(1003, "暂不支持分页查询"),
+
+    /**
+     * 1004 - 暂不支持列表查询
+     */
+    NOT_SUPPORT_LIST_QUERY(1004, "暂不支持列表查询"),;
 
     /**
      * 编码
