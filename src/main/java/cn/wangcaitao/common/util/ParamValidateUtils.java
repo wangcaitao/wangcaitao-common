@@ -35,7 +35,18 @@ public class ParamValidateUtils {
      * @param paramComment 参数描述
      */
     public static void validateStringEmpty(String param, String paramComment) {
-        if (StringUtils.isEmpty(param)) {
+        validateStringEmpty(param, paramComment, false);
+    }
+
+    /**
+     * 校验字符串
+     *
+     * @param param        参数
+     * @param paramComment 参数描述
+     * @param emptyString  是否可以为空字符串. 0: 不可以, 1: 可以
+     */
+    public static void validateStringEmpty(String param, String paramComment, boolean emptyString) {
+        if (StringUtils.isEmpty(param) && !emptyString) {
             throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
         }
     }
@@ -48,11 +59,21 @@ public class ParamValidateUtils {
      * @param maxLength    最大字符长度
      */
     public static void validateStringEmpty(String param, String paramComment, int maxLength) {
-        if (StringUtils.isEmpty(param)) {
-            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
-        }
+        validateStringEmpty(param, paramComment, maxLength, false);
+    }
 
-        if (maxLength < param.length()) {
+    /**
+     * 校验字符串
+     *
+     * @param param        参数
+     * @param paramComment 参数描述
+     * @param maxLength    最大字符长度
+     * @param emptyString  是否可以为空字符串. 0: 不可以, 1: 可以
+     */
+    public static void validateStringEmpty(String param, String paramComment, int maxLength, boolean emptyString) {
+        validateStringEmpty(param, paramComment, emptyString);
+
+        if (StringUtils.isNotEmpty(param) && maxLength < param.length()) {
             throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 最大 " + maxLength + " 个字符");
         }
     }
@@ -64,7 +85,18 @@ public class ParamValidateUtils {
      * @param paramComment 参数描述
      */
     public static void validateStringBlank(String param, String paramComment) {
-        if (StringUtils.isBlank(param)) {
+        validateStringBlank(param, paramComment, false);
+    }
+
+    /**
+     * 校验字符串
+     *
+     * @param param        参数
+     * @param paramComment 参数描述
+     * @param emptyString  是否可以为空字符串. 0: 不可以, 1: 可以
+     */
+    public static void validateStringBlank(String param, String paramComment, boolean emptyString) {
+        if (StringUtils.isBlank(param) && !emptyString) {
             throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
         }
     }
@@ -77,11 +109,21 @@ public class ParamValidateUtils {
      * @param maxLength    最大字符长度
      */
     public static void validateStringBlank(String param, String paramComment, int maxLength) {
-        if (StringUtils.isBlank(param)) {
-            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
-        }
+        validateStringBlank(param, paramComment, maxLength, false);
+    }
 
-        if (maxLength < param.length()) {
+    /**
+     * 校验字符串
+     *
+     * @param param        参数
+     * @param paramComment 参数描述
+     * @param maxLength    最大字符长度
+     * @param emptyString  是否可以为空字符串. 0: 不可以, 1: 可以
+     */
+    public static void validateStringBlank(String param, String paramComment, int maxLength, boolean emptyString) {
+        validateStringBlank(param, paramComment, emptyString);
+
+        if (StringUtils.isNotBlank(param) && maxLength < param.length()) {
             throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 最大 " + maxLength + " 个字符");
         }
     }
@@ -93,7 +135,18 @@ public class ParamValidateUtils {
      * @param paramComment 参数描述
      */
     public static void validateObjectNull(Object param, String paramComment) {
-        if (null == param) {
+        validateObjectNull(param, paramComment, false);
+    }
+
+    /**
+     * 校验 Object 是否为空
+     *
+     * @param param        参数
+     * @param paramComment 参数描述
+     * @param nullObject   是否可以为 null. 0: 不可以, 1: 可以
+     */
+    public static void validateObjectNull(Object param, String paramComment, boolean nullObject) {
+        if (null == param && !nullObject) {
             throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
         }
     }
@@ -105,7 +158,19 @@ public class ParamValidateUtils {
      * @param paramComment 参数描述
      */
     public static void validateListEmpty(List param, String paramComment) {
-        if (null == param || param.isEmpty()) {
+        validateListEmpty(param, paramComment, false);
+    }
+
+    /**
+     * 校验列表是否为空
+     *
+     * @param param        参数
+     * @param paramComment 参数描述
+     * @param emptyList    是否可以为空. 0: 不可以, 1: 可以
+     */
+    public static void validateListEmpty(List param, String paramComment, boolean emptyList) {
+        boolean isEmptyList = (null == param || param.isEmpty());
+        if (isEmptyList && !emptyList) {
             throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
         }
     }
@@ -117,7 +182,18 @@ public class ParamValidateUtils {
      * @param paramComment 参数描述
      */
     public static void validateArrayEmpty(Object[] param, String paramComment) {
-        if (null == param || 0 == param.length) {
+        validateArrayEmpty(param, paramComment, false);
+    }
+
+    /**
+     * 校验数组是否为空
+     *
+     * @param param        参数
+     * @param paramComment 参数描述
+     */
+    public static void validateArrayEmpty(Object[] param, String paramComment, boolean emptyArray) {
+        boolean isEmptyArray = (null == param || 0 == param.length);
+        if (isEmptyArray && !emptyArray) {
             throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
         }
     }
