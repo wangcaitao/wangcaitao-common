@@ -105,6 +105,27 @@ public class ParamValidateUtilsTest {
 
         result = ParamValidateUtils.validateString("test", "test", 4, true);
         Assert.assertEquals("test", result);
+
+        result = ParamValidateUtils.validateString("test", "test");
+        Assert.assertEquals("test", result);
+
+        result = ParamValidateUtils.validateString("test", "test", true);
+        Assert.assertEquals("test", result);
+
+        result = ParamValidateUtils.validateString("test", "test", true, false);
+        Assert.assertEquals("test", result);
+
+        result = ParamValidateUtils.validateString(null, "test", true);
+        Assert.assertNull(result);
+
+        result = ParamValidateUtils.validateString("", "test", true);
+        Assert.assertNull(result);
+
+        result = ParamValidateUtils.validateString(" ", "test", true);
+        Assert.assertNull(result);
+
+        result = ParamValidateUtils.validateString("", "test", true, false);
+        Assert.assertNull(result);
     }
 
     @Test
@@ -128,6 +149,41 @@ public class ParamValidateUtilsTest {
         } catch (ResultException e) {
             Assert.assertEquals(HttpStatusConstant.BAD_REQUEST_CODE, e.getCode());
             Assert.assertEquals("test 最大 3 个字符", e.getMsg());
+        }
+
+        try {
+            ParamValidateUtils.validateString(null, "test");
+        } catch (ResultException e) {
+            Assert.assertEquals(HttpStatusConstant.BAD_REQUEST_CODE, e.getCode());
+            Assert.assertEquals("test 不能为空", e.getMsg());
+        }
+
+        try {
+            ParamValidateUtils.validateString("", "test");
+        } catch (ResultException e) {
+            Assert.assertEquals(HttpStatusConstant.BAD_REQUEST_CODE, e.getCode());
+            Assert.assertEquals("test 不能为空", e.getMsg());
+        }
+
+        try {
+            ParamValidateUtils.validateString("", "test", true);
+        } catch (ResultException e) {
+            Assert.assertEquals(HttpStatusConstant.BAD_REQUEST_CODE, e.getCode());
+            Assert.assertEquals("test 不能为空", e.getMsg());
+        }
+
+        try {
+            ParamValidateUtils.validateString(null, "test", false, false);
+        } catch (ResultException e) {
+            Assert.assertEquals(HttpStatusConstant.BAD_REQUEST_CODE, e.getCode());
+            Assert.assertEquals("test 不能为空", e.getMsg());
+        }
+
+        try {
+            ParamValidateUtils.validateString("", "test", false, false);
+        } catch (ResultException e) {
+            Assert.assertEquals(HttpStatusConstant.BAD_REQUEST_CODE, e.getCode());
+            Assert.assertEquals("test 不能为空", e.getMsg());
         }
     }
 

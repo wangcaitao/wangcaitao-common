@@ -104,6 +104,50 @@ public class ParamValidateUtils {
     }
 
     /**
+     * 校验字符串不能为空
+     *
+     * @param param        参数
+     * @param paramComment 参数描述
+     * @return param
+     */
+    public static String validateString(String param, String paramComment) {
+        return validateString(param, paramComment, false);
+    }
+
+    /**
+     * 校验字符串不能为空. 字符串可以为空, 为空返回 null
+     *
+     * @param param        参数
+     * @param paramComment 参数描述
+     * @param emptyString  是否可以为空字符串. 0: 不可以, 1: 可以
+     * @return param
+     */
+    public static String validateString(String param, String paramComment, boolean emptyString) {
+        return validateString(param, paramComment, emptyString, true);
+    }
+
+    /**
+     * 校验字符串不能为空. 字符串可以为空, 为空返回 null
+     *
+     * @param param        参数
+     * @param paramComment 参数描述
+     * @param emptyString  是否可以为空字符串. 0: 不可以, 1: 可以
+     * @return param
+     */
+    public static String validateString(String param, String paramComment, boolean emptyString, boolean blank) {
+        boolean isEmptyString = blank ? StringUtils.isBlank(param) : StringUtils.isEmpty(param);
+        if (isEmptyString) {
+            if (emptyString) {
+                param = null;
+            } else {
+                throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+            }
+        }
+
+        return param;
+    }
+
+    /**
      * 校验字符串长度不能大于指定值. 字符串可以为空, 为空返回 null
      *
      * @param param        参数
