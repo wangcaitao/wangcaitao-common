@@ -30,7 +30,22 @@ public enum ErrorCodeEnum {
     /**
      * 1004 - 暂不支持列表查询
      */
-    NOT_SUPPORT_LIST_QUERY(1004, "暂不支持列表查询"),;
+    NOT_SUPPORT_LIST_QUERY(1004, "暂不支持列表查询"),
+
+    /**
+     * 100403 - 该资源不能修改
+     */
+    NOT_SUPPORT_UPDATE(1005, "该资源不能修改"),
+
+    /**
+     * 1006 - 该资源不能删除
+     */
+    NOT_SUPPORT_DELETE(1006, "该资源不能删除"),
+
+    /**
+     * 1007 - 不支持移动
+     */
+    NOT_SUPPORT_MOVE(1007, "不支持移动"),;
 
     /**
      * 编码
