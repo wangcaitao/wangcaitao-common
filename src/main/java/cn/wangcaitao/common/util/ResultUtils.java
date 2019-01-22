@@ -20,6 +20,7 @@ public class ResultUtils {
      * default msg: 请求成功<br>
      * default data: null
      *
+     * @param <T> T
      * @return Result
      */
     public static <T> Result<T> success() {
@@ -32,6 +33,7 @@ public class ResultUtils {
      * default msg: 请求成功
      *
      * @param data 数据集合
+     * @param <T>  T
      * @return Result
      */
     public static <T> Result<T> success(T data) {
@@ -44,6 +46,7 @@ public class ResultUtils {
      *
      * @param msg  消息
      * @param data 数据集合
+     * @param <T>  T
      * @return Result
      */
     public static <T> Result<T> success(String msg, T data) {
@@ -99,6 +102,7 @@ public class ResultUtils {
      * default code: 500<br>
      * default msg: 请求错误
      *
+     * @param <T> T
      * @return Result
      */
     public static <T> Result<T> error() {
@@ -110,6 +114,7 @@ public class ResultUtils {
      * default code: 500<br>
      *
      * @param msg 错误消息
+     * @param <T> T
      * @return Result
      */
     public static <T> Result<T> error(String msg) {
@@ -121,6 +126,7 @@ public class ResultUtils {
      *
      * @param code 返回码
      * @param msg  消息
+     * @param <T>  T
      * @return Result
      */
     public static <T> Result<T> error(int code, String msg) {
@@ -133,6 +139,7 @@ public class ResultUtils {
      * @param code 返回码
      * @param msg  消息
      * @param data 数据集合
+     * @param <T>  T
      * @return Result
      */
     public static <T> Result<T> error(int code, String msg, T data) {
@@ -143,6 +150,7 @@ public class ResultUtils {
      * 返回结果数据
      *
      * @param result Result
+     * @param <T>    T
      * @return 结果数据
      */
     public static <T> T getData(Result<T> result) {

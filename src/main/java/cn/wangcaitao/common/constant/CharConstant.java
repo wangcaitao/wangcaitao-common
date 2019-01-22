@@ -163,12 +163,12 @@ public class CharConstant {
     public static final String STAR = "*";
 
     /**
-     * @
+     * at
      */
     public static final String AT = "@";
 
     /**
-     * &
+     * and
      */
     public static final String AND = "&";
 
