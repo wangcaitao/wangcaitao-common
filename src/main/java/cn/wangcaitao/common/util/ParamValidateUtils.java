@@ -181,6 +181,7 @@ public class ParamValidateUtils {
      * @param maxLength    最大字符长度
      * @param emptyString  是否可以为空字符串. 0: 不可以, 1: 可以
      * @param blank        是否可以为 blank 字符串. 0: 不可以, 1: 可以
+     * @return param
      */
     public static String validateString(String param, String paramComment, int maxLength, boolean emptyString, boolean blank) {
         boolean isEmptyString = blank ? StringUtils.isNotBlank(param) : StringUtils.isNotEmpty(param);
@@ -257,6 +258,7 @@ public class ParamValidateUtils {
      *
      * @param param        参数
      * @param paramComment 参数描述
+     * @param emptyArray   是否可以为空. 0: 不可以, 1: 可以
      */
     public static void validateArrayEmpty(Object[] param, String paramComment, boolean emptyArray) {
         boolean isEmptyArray = (null == param || 0 == param.length);
