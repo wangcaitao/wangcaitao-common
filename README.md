@@ -6,9 +6,9 @@
 
 ```xml
 <dependency>
-    <groupId>cn.wangcaitao</groupId>
+    <groupId>com.wangcaitao</groupId>
     <artifactId>wangcaitao-common</artifactId>
-    <versiion>1.0.0</version>
+    <versiion>2.0.0</version>
 </dependency>
 ```
 
@@ -24,6 +24,7 @@
   * 排序类型常量
   * 分页常量
   * 请求头常量
+  * ContentType 常量
 * 实体
   * 基础 DO
   * 基础查询
