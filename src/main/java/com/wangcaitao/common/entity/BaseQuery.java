@@ -17,12 +17,12 @@ public class BaseQuery {
     /**
      * 当前页码，默认第1页
      */
-    private Integer pageNum = PageConstant.DEFAULT_PAGE_NUM;
+    private Integer pageNum;
 
     /**
      * 每页大小，默认每页10条
      */
-    private Integer pageSize = PageConstant.DEFAULT_PAGE_SIZE;
+    private Integer pageSize;
 
     /**
      * 升序列名
@@ -52,17 +52,35 @@ public class BaseQuery {
      * @param isValidatePageSize 是否校验每页大小
      */
     public void validate(boolean isValidatePageSize) {
-        if (isValidatePageSize && pageSize > PageConstant.MAX_PAGE_SIZE) {
+        if (isValidatePageSize && this.getPageSize() > PageConstant.MAX_PAGE_SIZE) {
             throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, BadRequestMsgConstant.OVER_MAX_PAGE_SIZE);
         }
     }
 
     /**
-     * set pagination
+     * get pagination
      *
-     * @return pagination
+     * @return 如果为 NULL, 返回默认值 true
      */
     public Boolean getPagination() {
-        return null == pagination ? true : this.pagination;
+        return null == this.pagination ? true : this.pagination;
+    }
+
+    /**
+     * get pageNum
+     *
+     * @return 如果为 NULL, 返回默认值 1
+     */
+    public Integer getPageNum() {
+        return null == this.pageNum ? PageConstant.DEFAULT_PAGE_NUM : this.pageNum;
+    }
+
+    /**
+     * get pageSize
+     *
+     * @return 如果为 NULL, 返回默认值 10
+     */
+    public Integer getPageSize() {
+        return null == this.pageSize ? PageConstant.DEFAULT_PAGE_SIZE : this.pageSize;
     }
 }
