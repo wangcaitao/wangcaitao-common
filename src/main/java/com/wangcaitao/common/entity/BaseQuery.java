@@ -37,7 +37,7 @@ public class BaseQuery {
     /**
      * 是否需要分页, 默认分页. 0: 不需要, 1: 需要
      */
-    private Boolean pagination = true;
+    private Boolean pagination;
 
     /**
      * 参数校验
@@ -55,5 +55,14 @@ public class BaseQuery {
         if (isValidatePageSize && pageSize > PageConstant.MAX_PAGE_SIZE) {
             throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, BadRequestMsgConstant.OVER_MAX_PAGE_SIZE);
         }
+    }
+
+    /**
+     * set pagination
+     *
+     * @return pagination
+     */
+    public Boolean getPagination() {
+        return null == pagination ? true : this.pagination;
     }
 }

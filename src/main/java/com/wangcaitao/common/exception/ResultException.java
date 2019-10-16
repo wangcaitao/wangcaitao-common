@@ -31,6 +31,10 @@ public class ResultException extends RuntimeException {
     public ResultException() {
     }
 
+    public ResultException(String msg) {
+        this.msg = msg;
+    }
+
     public ResultException(int code, String msg) {
         this.code = code;
         this.msg = msg;
