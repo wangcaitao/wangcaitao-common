@@ -1,6 +1,7 @@
 package com.wangcaitao.common.entity;
 
-import com.wangcaitao.common.util.ParamValidateUtils;
+import com.wangcaitao.common.util.validate.IdValidateUtils;
+import com.wangcaitao.common.util.validate.StringValidateUtils;
 import lombok.Data;
 
 /**
@@ -25,7 +26,7 @@ public class UpdateSortDTO {
      * 参数校验
      */
     public void validate() {
-        ParamValidateUtils.validateId(id);
-        ParamValidateUtils.validateStringEmpty(typeCode, "typeCode");
+        IdValidateUtils.notNull(id, "id");
+        StringValidateUtils.notBlack(typeCode, "typeCode");
     }
 }

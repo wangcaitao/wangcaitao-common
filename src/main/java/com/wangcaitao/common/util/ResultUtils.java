@@ -106,19 +106,19 @@ public class ResultUtils {
      * @return Result
      */
     public static <T> Result<T> error() {
-        return error(HttpStatusConstant.INTERNAL_SERVER_ERROR_MSG);
+        return error(HttpStatusConstant.INTERNAL_SERVER_ERROR_CODE, HttpStatusConstant.INTERNAL_SERVER_ERROR_MSG);
     }
 
     /**
      * 请求错误<br>
-     * default code: 500<br>
+     * default code: 400<br>
      *
      * @param msg 错误消息
      * @param <T> T
      * @return Result
      */
     public static <T> Result<T> error(String msg) {
-        return error(HttpStatusConstant.INTERNAL_SERVER_ERROR_CODE, msg);
+        return error(HttpStatusConstant.BAD_REQUEST_CODE, msg);
     }
 
     /**

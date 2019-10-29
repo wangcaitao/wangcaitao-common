@@ -32,6 +32,7 @@ public class ResultException extends RuntimeException {
     }
 
     public ResultException(String msg) {
+        this.code = HttpStatusConstant.BAD_REQUEST_CODE;
         this.msg = msg;
     }
 

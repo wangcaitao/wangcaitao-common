@@ -1,6 +1,5 @@
 package com.wangcaitao.common.util;
 
-import com.wangcaitao.common.constant.HttpStatusConstant;
 import com.wangcaitao.common.exception.ResultException;
 import org.apache.commons.lang3.StringUtils;
 
@@ -10,7 +9,9 @@ import java.util.List;
  * 基本参数校验
  *
  * @author wangcaitao
+ * @see com.wangcaitao.common.util.validate
  */
+@Deprecated
 public class ParamValidateUtils {
 
     /**
@@ -20,11 +21,11 @@ public class ParamValidateUtils {
      */
     public static void validateId(Long id) {
         if (null == id) {
-            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, "id 不能为空");
+            throw new ResultException("id 不能为空");
         }
 
         if (1 > id) {
-            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, "id 无效");
+            throw new ResultException("id 无效");
         }
     }
 
@@ -48,7 +49,7 @@ public class ParamValidateUtils {
     public static void validateStringEmpty(String param, String paramComment, boolean blank) {
         boolean isEmptyString = blank ? StringUtils.isBlank(param) : StringUtils.isEmpty(param);
         if (isEmptyString) {
-            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+            throw new ResultException(paramComment + " 不能为空");
         }
     }
 
@@ -74,7 +75,7 @@ public class ParamValidateUtils {
     public static void validateStringLength(String param, String paramComment, int maxLength, boolean blank) {
         boolean isEmptyString = blank ? StringUtils.isNotBlank(param) : StringUtils.isNotEmpty(param);
         if (isEmptyString && maxLength < param.length()) {
-            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 最大 " + maxLength + " 个字符");
+            throw new ResultException(paramComment + " 最大 " + maxLength + " 个字符");
         }
     }
 
@@ -141,7 +142,7 @@ public class ParamValidateUtils {
             if (emptyString) {
                 param = null;
             } else {
-                throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+                throw new ResultException(paramComment + " 不能为空");
             }
         }
 
@@ -215,7 +216,7 @@ public class ParamValidateUtils {
      */
     public static void validateObjectNull(Object param, String paramComment, boolean nullObject) {
         if (null == param && !nullObject) {
-            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+            throw new ResultException(paramComment + " 不能为空");
         }
     }
 
@@ -239,7 +240,7 @@ public class ParamValidateUtils {
     public static void validateListEmpty(List param, String paramComment, boolean emptyList) {
         boolean isEmptyList = (null == param || param.isEmpty());
         if (isEmptyList && !emptyList) {
-            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+            throw new ResultException(paramComment + " 不能为空");
         }
     }
 
@@ -263,7 +264,7 @@ public class ParamValidateUtils {
     public static void validateArrayEmpty(Object[] param, String paramComment, boolean emptyArray) {
         boolean isEmptyArray = (null == param || 0 == param.length);
         if (isEmptyArray && !emptyArray) {
-            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, paramComment + " 不能为空");
+            throw new ResultException(paramComment + " 不能为空");
         }
     }
 }

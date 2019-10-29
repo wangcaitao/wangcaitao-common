@@ -1,7 +1,6 @@
 package com.wangcaitao.common.entity;
 
 import com.wangcaitao.common.constant.BadRequestMsgConstant;
-import com.wangcaitao.common.constant.HttpStatusConstant;
 import com.wangcaitao.common.constant.PageConstant;
 import com.wangcaitao.common.exception.ResultException;
 import lombok.Data;
@@ -53,7 +52,7 @@ public class BaseQuery {
      */
     public void validate(boolean isValidatePageSize) {
         if (isValidatePageSize && this.getPageSize() > PageConstant.MAX_PAGE_SIZE) {
-            throw new ResultException(HttpStatusConstant.BAD_REQUEST_CODE, BadRequestMsgConstant.OVER_MAX_PAGE_SIZE);
+            throw new ResultException(BadRequestMsgConstant.OVER_MAX_PAGE_SIZE);
         }
     }
 
