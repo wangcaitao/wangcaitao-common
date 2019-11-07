@@ -1,5 +1,7 @@
 package com.wangcaitao.common.util;
 
+import com.wangcaitao.common.constant.ErrorCodeEnum;
+import com.wangcaitao.common.exception.ResultException;
 import com.wangcaitao.common.util.validate.StringValidateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -51,17 +53,18 @@ public class IdCardUtils {
      * 校验身份证号码是否有效
      *
      * @param idCardNo 身份证号码
-     * @return 是否有效
      */
-    public static boolean validate(String idCardNo) {
+    public static void validate(String idCardNo) {
         StringValidateUtils.notBlack(idCardNo, "身份证号码");
 
         int length = idCardNo.length();
         if (length == LENGTH_15) {
-            return Pattern.matches(PATTERN_15, idCardNo);
+            if (!Pattern.matches(PATTERN_15, idCardNo)) {
+                throw new ResultException(ErrorCodeEnum.ID_CARD_NO_INVALID.getCode(), ErrorCodeEnum.ID_CARD_NO_INVALID.getMsg());
+            }
         } else if (length == LENGTH_18) {
             if (!Pattern.matches(PATTERN_18, idCardNo)) {
-                return false;
+                throw new ResultException(ErrorCodeEnum.ID_CARD_NO_INVALID.getCode(), ErrorCodeEnum.ID_CARD_NO_INVALID.getMsg());
             }
 
             // region 求和
@@ -71,17 +74,15 @@ public class IdCardUtils {
                     sum += Integer.valueOf(String.valueOf(idCardNo.charAt(i))) * COEFFICIENT[i];
                 }
             } catch (NumberFormatException e) {
-                log.error("身份证号码前 17 中存在非数字字符. idCardNo: {}", idCardNo);
-
-                return false;
+                throw new ResultException(ErrorCodeEnum.ID_CARD_NO_INVALID.getCode(), ErrorCodeEnum.ID_CARD_NO_INVALID.getMsg());
             }
             // endregion
 
-            return VERIFY_CODE[sum % 11].equalsIgnoreCase(String.valueOf(idCardNo.charAt(LENGTH_18 - 1)));
+            if (!VERIFY_CODE[sum % VERIFY_CODE.length].equalsIgnoreCase(String.valueOf(idCardNo.charAt(LENGTH_18 - 1)))) {
+                throw new ResultException(ErrorCodeEnum.ID_CARD_NO_INVALID.getCode(), ErrorCodeEnum.ID_CARD_NO_INVALID.getMsg());
+            }
         } else {
-            log.info("身份证号码位数错误. idCardNo: {}", idCardNo);
-
-            return false;
+            throw new ResultException(ErrorCodeEnum.ID_CARD_NO_INVALID.getCode(), ErrorCodeEnum.ID_CARD_NO_INVALID.getMsg());
         }
     }
 

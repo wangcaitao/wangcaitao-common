@@ -45,7 +45,13 @@ public enum ErrorCodeEnum {
     /**
      * 1007 - 不支持移动
      */
-    NOT_SUPPORT_MOVE(1007, "不支持移动"),;
+    NOT_SUPPORT_MOVE(1007, "不支持移动"),
+
+    /**
+     * 1008 - 身份证号码无效, 请核对
+     */
+    ID_CARD_NO_INVALID(1008, "身份证号码无效, 请核对"),
+    ;
 
     /**
      * 编码
