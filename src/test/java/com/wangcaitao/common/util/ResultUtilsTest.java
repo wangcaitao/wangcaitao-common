@@ -52,7 +52,7 @@ public class ResultUtilsTest {
 
         String msg = "pass error";
         Result<Object> customizeMsgResult = ResultUtils.error(msg);
-        Assert.assertEquals(HttpStatusConstant.INTERNAL_SERVER_ERROR_CODE, customizeMsgResult.getCode());
+        Assert.assertEquals(HttpStatusConstant.BAD_REQUEST_CODE, customizeMsgResult.getCode());
         Assert.assertEquals(msg, customizeMsgResult.getMsg());
         Assert.assertNull(customizeMsgResult.getData());
 
