@@ -1,5 +1,6 @@
 package com.wangcaitao.common.util;
 
+import com.wangcaitao.common.constant.ErrorEnum;
 import com.wangcaitao.common.constant.HttpStatusConstant;
 import com.wangcaitao.common.entity.Pagination;
 import com.wangcaitao.common.entity.Result;
@@ -144,6 +145,29 @@ public class ResultUtils {
      */
     public static <T> Result<T> error(int code, String msg, T data) {
         return new Result<>(code, msg, data);
+    }
+
+    /**
+     * 请求错误
+     *
+     * @param errorEnum 错误
+     * @param <T>       T
+     * @return Result
+     */
+    public static <T> Result<T> error(ErrorEnum errorEnum) {
+        return error(errorEnum.getCode(), errorEnum.getMsg());
+    }
+
+    /**
+     * 请求错误
+     *
+     * @param errorEnum 错误
+     * @param data      数据集合
+     * @param <T>       T
+     * @return Result
+     */
+    public static <T> Result<T> error(ErrorEnum errorEnum, T data) {
+        return error(errorEnum.getCode(), errorEnum.getMsg(), data);
     }
 
     /**

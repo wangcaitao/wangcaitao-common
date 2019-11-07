@@ -1,7 +1,7 @@
 package com.wangcaitao.common.util;
 
+import com.wangcaitao.common.constant.CommonErrorEnum;
 import com.wangcaitao.common.constant.DictCodeConstant;
-import com.wangcaitao.common.constant.ErrorCodeEnum;
 import com.wangcaitao.common.entity.Result;
 
 /**
@@ -20,11 +20,11 @@ public class ConditionUtils {
     public static Result judgeMoveTypeCode(String typeCode) {
         switch (typeCode) {
             case DictCodeConstant.MOVE_TYPE_UP:
-                return ResultUtils.error(ErrorCodeEnum.FISRT.getCode(), ErrorCodeEnum.FISRT.getMsg());
+                return ResultUtils.error(CommonErrorEnum.FISRT);
             case DictCodeConstant.MOVE_TYPE_DOWN:
-                return ResultUtils.error(ErrorCodeEnum.LAST.getCode(), ErrorCodeEnum.LAST.getMsg());
+                return ResultUtils.error(CommonErrorEnum.LAST);
             default:
-                return ResultUtils.error(ErrorCodeEnum.MOVE_TYPE_CODE_INVALID.getCode(), ErrorCodeEnum.MOVE_TYPE_CODE_INVALID.getMsg());
+                return ResultUtils.error(CommonErrorEnum.MOVE_TYPE_CODE_INVALID);
         }
     }
 }

@@ -5,7 +5,7 @@ package com.wangcaitao.common.constant;
  *
  * @author wangcaitao
  */
-public enum ErrorCodeEnum {
+public enum CommonErrorEnum implements ErrorEnum {
 
     /**
      * 1000 - 移动类型编码无效
@@ -63,11 +63,16 @@ public enum ErrorCodeEnum {
      */
     private String msg;
 
-    ErrorCodeEnum(int code, String msg) {
+    CommonErrorEnum(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
+    CommonErrorEnum(String msg) {
+        this.code = 400;
+    }
+
+    @Override
     public int getCode() {
 
         return code;
@@ -77,6 +82,7 @@ public enum ErrorCodeEnum {
         this.code = code;
     }
 
+    @Override
     public String getMsg() {
         return msg;
     }

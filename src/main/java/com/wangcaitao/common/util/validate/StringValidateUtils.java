@@ -35,8 +35,8 @@ public class StringValidateUtils {
     }
 
     /**
-     * 1. 不能为空<br/>
-     * 2. 长度不能大于指定值<br/>
+     * 不能为空<br>
+     * 长度不能大于指定值<br>
      * 使用场景: 保存入库时
      *
      * @param param        参数
@@ -59,7 +59,7 @@ public class StringValidateUtils {
     }
 
     /**
-     * 长度不能大于指定值<br/>
+     * 长度不能大于指定值<br>
      * 使用场景: 修改入库时
      *
      * @param param        参数

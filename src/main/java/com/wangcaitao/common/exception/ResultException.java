@@ -1,5 +1,6 @@
 package com.wangcaitao.common.exception;
 
+import com.wangcaitao.common.constant.ErrorEnum;
 import com.wangcaitao.common.constant.HttpStatusConstant;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,12 +17,12 @@ public class ResultException extends RuntimeException {
     /**
      * 状态码
      */
-    private int code = HttpStatusConstant.INTERNAL_SERVER_ERROR_CODE;
+    private int code;
 
     /**
      * 说明
      */
-    private String msg = HttpStatusConstant.INTERNAL_SERVER_ERROR_MSG;
+    private String msg;
 
     /**
      * 请求参数
@@ -29,6 +30,19 @@ public class ResultException extends RuntimeException {
     private String params;
 
     public ResultException() {
+        this.code = HttpStatusConstant.INTERNAL_SERVER_ERROR_CODE;
+        this.msg = HttpStatusConstant.INTERNAL_SERVER_ERROR_MSG;
+    }
+
+    public ResultException(ErrorEnum errorEnum) {
+        this.code = errorEnum.getCode();
+        this.msg = errorEnum.getMsg();
+    }
+
+    public ResultException(ErrorEnum errorEnum, String params) {
+        this.code = errorEnum.getCode();
+        this.msg = errorEnum.getMsg();
+        this.params = params;
     }
 
     public ResultException(String msg) {
