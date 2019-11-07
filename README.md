@@ -8,7 +8,7 @@
 <dependency>
     <groupId>com.wangcaitao</groupId>
     <artifactId>wangcaitao-common</artifactId>
-    <versiion>2.0.1</version>
+    <versiion>2.1.0</version>
 </dependency>
 ```
 
@@ -25,6 +25,7 @@
   * 分页常量
   * 请求头常量
   * ContentType 常量
+  * 统一错误返回 enum 接口
 * 实体
   * 基础 DO
   * 基础查询
@@ -42,3 +43,4 @@
   * http request 工具类
   * 基本参数校验工具类
   * 金额工具类
+  * 身份证工具类
