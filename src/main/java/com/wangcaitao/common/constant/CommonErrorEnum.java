@@ -15,7 +15,7 @@ public enum CommonErrorEnum implements ErrorEnum {
     /**
      * 1001 - 已经是第一个了
      */
-    FISRT(1001, "已经是第一个了"),
+    FIRST(1001, "已经是第一个了"),
 
     /**
      * 1002 - 已经是最后一个了

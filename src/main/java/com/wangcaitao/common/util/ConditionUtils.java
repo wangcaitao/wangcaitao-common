@@ -20,7 +20,7 @@ public class ConditionUtils {
     public static Result judgeMoveTypeCode(String typeCode) {
         switch (typeCode) {
             case DictCodeConstant.MOVE_TYPE_UP:
-                return ResultUtils.error(CommonErrorEnum.FISRT);
+                return ResultUtils.error(CommonErrorEnum.FIRST);
             case DictCodeConstant.MOVE_TYPE_DOWN:
                 return ResultUtils.error(CommonErrorEnum.LAST);
             default:

@@ -23,7 +23,7 @@ public class EnvironmentConstant {
     public static final String PRE = "pre";
 
     /**
-     * 生成环境
+     * 生产环境
      */
     public static final String PROD = "prod";
 }
