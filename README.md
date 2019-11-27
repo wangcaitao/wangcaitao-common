@@ -8,7 +8,7 @@
 <dependency>
     <groupId>com.wangcaitao</groupId>
     <artifactId>wangcaitao-common</artifactId>
-    <version>2.1.0</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 
@@ -31,11 +31,11 @@
   * 基础查询
   * 分页
   * 统一返回结果
+  * 上下移动
 * 异常
   * 统一返回结果异常
 * 接口
-  * 基础 service 接口
-  * 校验分组
+  * 基础 CRUD service 接口
 * 工具
   * 随机数生成工具类
   * 统一返回结果工具类
