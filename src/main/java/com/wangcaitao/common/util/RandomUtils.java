@@ -24,7 +24,7 @@ public class RandomUtils {
     }
 
     /**
-     * 生成通用编号 (25 位)
+     * 生成通用编号 (25 位) yyyyMMddHHmmssSSS + 8 位随机数
      *
      * @return 编号
      */

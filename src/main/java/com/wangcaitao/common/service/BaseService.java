@@ -3,6 +3,7 @@ package com.wangcaitao.common.service;
 import com.wangcaitao.common.entity.BaseQuery;
 import com.wangcaitao.common.entity.Result;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -34,7 +35,7 @@ public interface BaseService<BO, SAVE_DTO, UPDATE_DTO, Q extends BaseQuery> {
      * @param entity dto entity
      * @return Result
      */
-    Result save(SAVE_DTO entity);
+    Result<Serializable> save(SAVE_DTO entity);
 
     /**
      * 批量保存
@@ -42,7 +43,7 @@ public interface BaseService<BO, SAVE_DTO, UPDATE_DTO, Q extends BaseQuery> {
      * @param entities entities
      * @return Result
      */
-    Result save(List<SAVE_DTO> entities);
+    Result<Serializable> save(List<SAVE_DTO> entities);
 
     /**
      * 修改
@@ -50,7 +51,7 @@ public interface BaseService<BO, SAVE_DTO, UPDATE_DTO, Q extends BaseQuery> {
      * @param entity dto entity
      * @return Result
      */
-    Result update(UPDATE_DTO entity);
+    Result<Serializable> update(UPDATE_DTO entity);
 
     /**
      * 批量修改
@@ -58,7 +59,7 @@ public interface BaseService<BO, SAVE_DTO, UPDATE_DTO, Q extends BaseQuery> {
      * @param entities entities
      * @return Result
      */
-    Result update(List<UPDATE_DTO> entities);
+    Result<Serializable> update(List<UPDATE_DTO> entities);
 
     /**
      * 删除
@@ -66,7 +67,7 @@ public interface BaseService<BO, SAVE_DTO, UPDATE_DTO, Q extends BaseQuery> {
      * @param id id
      * @return Result
      */
-    Result delete(Long id);
+    Result<Serializable> delete(Long id);
 
     /**
      * 批量删除
@@ -74,5 +75,5 @@ public interface BaseService<BO, SAVE_DTO, UPDATE_DTO, Q extends BaseQuery> {
      * @param ids ids
      * @return Result
      */
-    Result delete(List<Long> ids);
+    Result<Serializable> delete(List<Long> ids);
 }

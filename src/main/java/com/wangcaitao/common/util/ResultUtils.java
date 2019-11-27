@@ -2,6 +2,7 @@ package com.wangcaitao.common.util;
 
 import com.wangcaitao.common.constant.ErrorEnum;
 import com.wangcaitao.common.constant.HttpStatusConstant;
+import com.wangcaitao.common.constant.HttpStatusEnum;
 import com.wangcaitao.common.entity.Pagination;
 import com.wangcaitao.common.entity.Result;
 import com.wangcaitao.common.exception.ResultException;
@@ -107,7 +108,7 @@ public class ResultUtils {
      * @return Result
      */
     public static <T> Result<T> error() {
-        return error(HttpStatusConstant.INTERNAL_SERVER_ERROR_CODE, HttpStatusConstant.INTERNAL_SERVER_ERROR_MSG);
+        return error(HttpStatusEnum.INTERNAL_SERVER_ERROR);
     }
 
     /**
