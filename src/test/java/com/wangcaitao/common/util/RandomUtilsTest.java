@@ -15,7 +15,7 @@ public class RandomUtilsTest {
      * 生成自定义位数随机数
      */
     @Test
-    public void shoudGenerateRandomDigit() {
+    public void shouldGenerateRandomDigit() {
         int randomDigit = RandomUtils.generateRandomDigit(IntegerConstant.SIX);
         Assert.assertEquals(IntegerConstant.SIX, String.valueOf(randomDigit).length());
     }

@@ -71,7 +71,7 @@ public class IdCardUtils {
             int sum = 0;
             try {
                 for (int i = 0; i < length - 1; i++) {
-                    sum += Integer.valueOf(String.valueOf(idCardNo.charAt(i))) * COEFFICIENT[i];
+                    sum += Integer.parseInt(String.valueOf(idCardNo.charAt(i))) * COEFFICIENT[i];
                 }
             } catch (NumberFormatException e) {
                 throw new ResultException(CommonErrorEnum.ID_CARD_NO_INVALID);
@@ -131,9 +131,9 @@ public class IdCardUtils {
         int sex;
         int length = idCardNo.length();
         if (length == LENGTH_15) {
-            sex = Integer.valueOf(String.valueOf(idCardNo.charAt(14)));
+            sex = Integer.parseInt(String.valueOf(idCardNo.charAt(14)));
         } else if (length == LENGTH_18) {
-            sex = Integer.valueOf(String.valueOf(idCardNo.charAt(16)));
+            sex = Integer.parseInt(String.valueOf(idCardNo.charAt(16)));
         } else {
             return "2";
         }
