@@ -7,6 +7,7 @@ import com.wangcaitao.common.util.validate.IdValidateUtils;
 import com.wangcaitao.common.util.validate.StringValidateUtils;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -15,7 +16,8 @@ import java.util.Objects;
  * @author wangcaitao
  */
 @Data
-public class UpdateSortDTO {
+public class UpdateSortDTO implements Serializable {
+    private static final long serialVersionUID = 8813901406648837869L;
 
     /**
      * id

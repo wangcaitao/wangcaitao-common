@@ -2,7 +2,8 @@ package com.wangcaitao.common.entity;
 
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * 基础 DO
@@ -10,7 +11,8 @@ import java.sql.Timestamp;
  * @author wangcaitao
  */
 @Data
-public class BaseDO {
+public class BaseDO implements Serializable {
+    private static final long serialVersionUID = -8664703910405583266L;
 
     /**
      * id
@@ -20,10 +22,10 @@ public class BaseDO {
     /**
      * 创建时间
      */
-    private Timestamp gmtCreate;
+    private LocalDateTime createGmt;
 
     /**
      * 修改时间
      */
-    private Timestamp gmtModified;
+    private LocalDateTime modifiedGmt;
 }

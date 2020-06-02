@@ -3,11 +3,8 @@ package com.wangcaitao.common.util;
 import com.wangcaitao.common.constant.ErrorEnum;
 import com.wangcaitao.common.constant.HttpStatusConstant;
 import com.wangcaitao.common.constant.HttpStatusEnum;
-import com.wangcaitao.common.entity.Pagination;
 import com.wangcaitao.common.entity.Result;
 import com.wangcaitao.common.exception.ResultException;
-
-import java.util.List;
 
 /**
  * 统一返回结果工具类
@@ -188,32 +185,5 @@ public class ResultUtils {
         } else {
             throw new ResultException(result.getCode(), result.getMsg());
         }
-    }
-
-    /**
-     * 返回分页数据
-     *
-     * @param result Result
-     * @param <T>    T
-     * @return List
-     */
-    public static <T> Pagination<T> getPagination(Result<Pagination<T>> result) {
-        Pagination<T> pagination = getData(result);
-        if (null == pagination) {
-            throw new ResultException();
-        }
-
-        return pagination;
-    }
-
-    /**
-     * 返回分页结果数据
-     *
-     * @param result Result
-     * @param <T>    T
-     * @return List
-     */
-    public static <T> List<T> getPaginationData(Result<Pagination<T>> result) {
-        return getPagination(result).getData();
     }
 }

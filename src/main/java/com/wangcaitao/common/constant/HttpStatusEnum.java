@@ -11,14 +11,14 @@ public enum HttpStatusEnum implements ErrorEnum {
     OK(200, "请求成功"),
 
     /**
-     * 400: 请求错误
+     * 400: 参数错误
      */
-    BAD_REQUEST(400, "请求错误"),
+    BAD_REQUEST(400, "参数错误"),
 
     /**
-     * 401: 请登录
+     * 401: 未认证
      */
-    UNAUTHORIZED(401, "请登录"),
+    UNAUTHORIZED(401, "未认证"),
 
     /**
      * 403: 权限不足

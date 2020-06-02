@@ -42,4 +42,18 @@ public class HttpServletRequestUtils {
 
         return request.getRemoteAddr();
     }
+
+    /**
+     * 获取 user-agent
+     *
+     * @param request request
+     * @return user-agent
+     */
+    public static String getUserAgent(HttpServletRequest request) {
+        if (null == request) {
+            throw new ResultException();
+        }
+
+        return request.getHeader(HttpHeaderConstant.KEY_USER_AGENT);
+    }
 }

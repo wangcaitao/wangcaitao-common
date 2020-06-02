@@ -5,13 +5,16 @@ import com.wangcaitao.common.constant.PageConstant;
 import com.wangcaitao.common.exception.ResultException;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * 基础查询
  *
  * @author wangcaitao
  */
 @Data
-public class BaseQuery {
+public class BaseQuery implements Serializable {
+    private static final long serialVersionUID = 7718625033381773834L;
 
     /**
      * 当前页码，默认第1页

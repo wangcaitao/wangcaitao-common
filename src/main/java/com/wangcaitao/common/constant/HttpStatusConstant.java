@@ -23,9 +23,9 @@ public class HttpStatusConstant {
     public static final int BAD_REQUEST_CODE = 400;
 
     /**
-     * 错误请求消息
+     * 参数请求消息
      */
-    public static final String BAD_REQUEST_MSG = "请求错误";
+    public static final String BAD_REQUEST_MSG = "参数错误";
 
     /**
      * 未登录编码
@@ -33,9 +33,9 @@ public class HttpStatusConstant {
     public static final int UNAUTHORIZED_CODE = 401;
 
     /**
-     * 未登录消息
+     * 未认证消息
      */
-    public static final String UNAUTHORIZED_MSG = "请登录";
+    public static final String UNAUTHORIZED_MSG = "未认证";
 
     /**
      * 未授权编码

@@ -1,6 +1,5 @@
 package com.wangcaitao.common.entity;
 
-import com.alibaba.fastjson.annotation.JSONType;
 import com.wangcaitao.common.constant.HttpStatusConstant;
 import com.wangcaitao.common.constant.PageConstant;
 import lombok.AllArgsConstructor;
@@ -17,9 +16,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@JSONType(
-        orders = {"code", "msg", "pageNum", "pageSize", "pages", "rows", "data"}
-)
 public class Result<T> {
 
     /**
