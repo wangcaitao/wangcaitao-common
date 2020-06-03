@@ -3,10 +3,19 @@ package com.wangcaitao.common.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+import com.wangcaitao.common.config.JacksonModule;
+import com.wangcaitao.common.constant.DateTimeFormatterConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * json util. use jackson
@@ -16,11 +25,18 @@ import java.util.List;
 @Slf4j
 public class JsonUtils {
 
-    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-
-    static {
-        OBJECT_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-    }
+    /**
+     * OBJECT_MAPPER
+     */
+    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
+            .setLocale(Locale.CHINA)
+            .setTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
+            .setDateFormat(new SimpleDateFormat(DateTimeFormatterConstant.DATE_TIME_PATTERN_01))
+            .registerModule(new ParameterNamesModule())
+            .registerModule(new Jdk8Module())
+            .registerModule(new JacksonModule());
 
     /**
      * object to json string
