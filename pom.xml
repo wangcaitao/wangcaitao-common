@@ -6,7 +6,7 @@
 
     <groupId>com.wangcaitao</groupId>
     <artifactId>wangcaitao-common</artifactId>
-    <version>2.2.0</version>
+    <version>2.3.0</version>
 
     <name>wangcaitao-common</name>
     <description>wangcaitao common</description>
@@ -32,7 +32,7 @@
         <url>https://github.com/wangcaitao/wangcaitao-common</url>
         <connection>scm:git:https://github.com/wangcaitao/wangcaitao-common.git</connection>
         <developerConnection>scm:git:https://github.com/wangcaitao/wangcaitao-common.git</developerConnection>
-        <tag>2.2.0</tag>
+        <tag>2.3.0</tag>
     </scm>
 
     <dependencyManagement>
@@ -40,7 +40,7 @@
             <dependency>
                 <groupId>com.wangcaitao</groupId>
                 <artifactId>wangcaitao-dependencies</artifactId>
-                <version>2.0.0</version>
+                <version>2.1.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -49,8 +49,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
