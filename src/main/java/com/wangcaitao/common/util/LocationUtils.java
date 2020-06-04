@@ -54,7 +54,7 @@ public class LocationUtils {
             return null;
         }
 
-        return JsonUtils.parseObject(responseContentStr, Location.class);
+        return JacksonUtils.parseObject(responseContentStr, Location.class);
     }
 
     /**

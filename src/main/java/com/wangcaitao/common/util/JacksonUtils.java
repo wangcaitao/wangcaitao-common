@@ -1,5 +1,6 @@
 package com.wangcaitao.common.util;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,12 +19,12 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 /**
- * json util. use jackson
+ * jackson util
  *
  * @author wangcaitao
  */
 @Slf4j
-public class JsonUtils {
+public class JacksonUtils {
 
     /**
      * OBJECT_MAPPER
@@ -31,6 +32,7 @@ public class JsonUtils {
     public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
             .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
+            .setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL)
             .setLocale(Locale.CHINA)
             .setTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
             .setDateFormat(new SimpleDateFormat(DateTimeFormatterConstant.DATE_TIME_PATTERN_01))

@@ -84,36 +84,40 @@ public class HttpServletRequestUtils {
         StringBuilder param = new StringBuilder();
         String method = request.getMethod();
         if (Objects.equals(HttpMethodConstant.GET, method)) {
-            System.out.println(request.getQueryString());
-        } else {
-            String contentType = request.getContentType();
-            if (Objects.equals(ContentTypeConstant.APPLICATION_FORM_URLENCODED_VALUE, contentType)) {
-                Enumeration<String> enumeration = request.getParameterNames();
-                while (enumeration.hasMoreElements()) {
-                    String key = enumeration.nextElement();
-                    String value = request.getParameter(key);
+            return request.getQueryString();
+        }
 
-                    param.append(key).append(": ").append(value).append(", ");
-                }
-            } else if (Objects.equals(ContentTypeConstant.APPLICATION_JSON_VALUE, contentType)
-                    || Objects.equals(ContentTypeConstant.APPLICATION_XML_VALUE, contentType)
-                    || Objects.equals(ContentTypeConstant.TEXT_PLAIN_VALUE, contentType)
-                    || Objects.equals(ContentTypeConstant.TEXT_HTML_VALUE, contentType)
-                    || Objects.equals(ContentTypeConstant.TEXT_XML_VALUE, contentType)
-            ) {
-                String line;
-                try {
-                    BufferedReader bufferedReader = request.getReader();
-                    while ((line = bufferedReader.readLine()) != null) {
-                        param.append(line.trim());
-                    }
-                } catch (IOException e) {
-                    log.error("get param error.", e);
-                }
+        String contentType = request.getContentType();
+        if (Objects.equals(ContentTypeConstant.APPLICATION_FORM_URLENCODED_VALUE, contentType)) {
+            Enumeration<String> enumeration = request.getParameterNames();
+            while (enumeration.hasMoreElements()) {
+                String key = enumeration.nextElement();
+                String value = request.getParameter(key);
 
-            } else {
-                log.error("not support. content-type: {}", contentType);
+                param.append(key).append(":").append(value).append(",");
             }
+
+            if (StringUtils.isNotEmpty(param)) {
+                param.deleteCharAt(param.length() - 1);
+            }
+        } else if (Objects.equals(ContentTypeConstant.APPLICATION_JSON_VALUE, contentType)
+                || Objects.equals(ContentTypeConstant.APPLICATION_XML_VALUE, contentType)
+                || Objects.equals(ContentTypeConstant.TEXT_PLAIN_VALUE, contentType)
+                || Objects.equals(ContentTypeConstant.TEXT_HTML_VALUE, contentType)
+                || Objects.equals(ContentTypeConstant.TEXT_XML_VALUE, contentType)
+        ) {
+            String line;
+            try {
+                BufferedReader bufferedReader = request.getReader();
+                while ((line = bufferedReader.readLine()) != null) {
+                    param.append(line.trim());
+                }
+            } catch (IOException e) {
+                log.error("get param error.", e);
+            }
+
+        } else {
+            log.error("not support. content-type: {}", contentType);
         }
 
         return param.toString();
