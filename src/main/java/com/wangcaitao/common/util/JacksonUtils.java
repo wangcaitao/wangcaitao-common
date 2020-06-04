@@ -12,6 +12,7 @@ import com.wangcaitao.common.constant.DateTimeFormatterConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.List;
@@ -54,7 +55,7 @@ public class JacksonUtils {
         try {
             return OBJECT_MAPPER.writeValueAsString(object);
         } catch (JsonProcessingException e) {
-            log.error("serialization error.", e);
+            log.error("serialization error.");
 
             throw new RuntimeException("serialization error.");
         }
@@ -76,7 +77,29 @@ public class JacksonUtils {
         try {
             return OBJECT_MAPPER.readValue(text, clazz);
         } catch (JsonProcessingException e) {
-            log.error("deserialization error. text: {}, className: {}", text, clazz.getName(), e);
+            log.error("deserialization error. text: {}, className: {}", text, clazz.getName());
+
+            throw new RuntimeException("deserialization error.");
+        }
+    }
+
+    /**
+     * json bytes to object
+     *
+     * @param bytes text
+     * @param clazz clazz
+     * @param <T>   T
+     * @return object
+     */
+    public static <T> T parseObject(byte[] bytes, Class<T> clazz) {
+        if (null == bytes || bytes.length == 0) {
+            throw new NullPointerException();
+        }
+
+        try {
+            return OBJECT_MAPPER.readValue(bytes, clazz);
+        } catch (IOException e) {
+            log.error("deserialization error. className: {}", clazz.getName());
 
             throw new RuntimeException("deserialization error.");
         }
@@ -98,7 +121,7 @@ public class JacksonUtils {
         try {
             return OBJECT_MAPPER.readValue(text, OBJECT_MAPPER.getTypeFactory().constructCollectionType(List.class, clazz));
         } catch (JsonProcessingException e) {
-            log.error("deserialization error. text: {}, className: {}", text, clazz.getName(), e);
+            log.error("deserialization error. text: {}, className: {}", text, clazz.getName());
 
             throw new RuntimeException("deserialization error.");
         }
