@@ -84,7 +84,9 @@ public class HttpServletRequestUtils {
         StringBuilder param = new StringBuilder();
         String method = request.getMethod();
         if (Objects.equals(HttpMethodConstant.GET, method)) {
-            return request.getQueryString();
+            String queryString = request.getQueryString();
+
+            return StringUtils.isEmpty(queryString) ? "" : queryString;
         }
 
         String contentType = request.getContentType();
