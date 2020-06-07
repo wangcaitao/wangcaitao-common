@@ -1,10 +1,8 @@
 package com.wangcaitao.common.util;
 
+import com.wangcaitao.common.constant.CommonDictCodeConstant;
 import com.wangcaitao.common.constant.CommonErrorEnum;
-import com.wangcaitao.common.constant.DictCodeConstant;
-import com.wangcaitao.common.entity.Result;
-
-import java.io.Serializable;
+import com.wangcaitao.common.exception.ResultException;
 
 /**
  * 公共条件判断工具
@@ -16,17 +14,16 @@ public class ConditionUtils {
     /**
      * 对移动编码错误处理
      *
-     * @param typeCode typeCode
-     * @return Result
+     * @param moveTypeCode moveTypeCode
      */
-    public static Result<Serializable> judgeMoveTypeCode(String typeCode) {
-        switch (typeCode) {
-            case DictCodeConstant.MOVE_TYPE_UP:
-                return ResultUtils.error(CommonErrorEnum.FIRST);
-            case DictCodeConstant.MOVE_TYPE_DOWN:
-                return ResultUtils.error(CommonErrorEnum.LAST);
+    public static void judgeMoveTypeCode(int moveTypeCode) {
+        switch (moveTypeCode) {
+            case CommonDictCodeConstant.MOVE_TYPE_UP:
+                throw new ResultException(CommonErrorEnum.FIRST);
+            case CommonDictCodeConstant.MOVE_TYPE_DOWN:
+                throw new ResultException(CommonErrorEnum.LAST);
             default:
-                return ResultUtils.error(CommonErrorEnum.MOVE_TYPE_CODE_INVALID);
+                throw new ResultException(CommonErrorEnum.MOVE_TYPE_CODE_INVALID);
         }
     }
 }

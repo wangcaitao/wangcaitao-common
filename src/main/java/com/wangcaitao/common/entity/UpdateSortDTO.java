@@ -1,10 +1,10 @@
 package com.wangcaitao.common.entity;
 
+import com.wangcaitao.common.constant.CommonDictCodeConstant;
 import com.wangcaitao.common.constant.CommonErrorEnum;
-import com.wangcaitao.common.constant.DictCodeConstant;
 import com.wangcaitao.common.exception.ResultException;
 import com.wangcaitao.common.util.validate.IdValidateUtils;
-import com.wangcaitao.common.util.validate.StringValidateUtils;
+import com.wangcaitao.common.util.validate.ObjectValidateUtils;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -27,16 +27,16 @@ public class UpdateSortDTO implements Serializable {
     /**
      * 移动类型编码
      */
-    private String typeCode;
+    private Integer moveTypeCode;
 
     /**
      * 参数校验
      */
     public void validate() {
         IdValidateUtils.notNull(id, "id");
-        StringValidateUtils.notBlack(typeCode, "typeCode");
+        ObjectValidateUtils.notNull(moveTypeCode, "moveTypeCode");
 
-        if (!Objects.equals(typeCode, DictCodeConstant.MOVE_TYPE_UP) && !Objects.equals(typeCode, DictCodeConstant.MOVE_TYPE_DOWN)) {
+        if (!Objects.equals(moveTypeCode, CommonDictCodeConstant.MOVE_TYPE_UP) && !Objects.equals(moveTypeCode, CommonDictCodeConstant.MOVE_TYPE_DOWN)) {
             throw new ResultException(CommonErrorEnum.MOVE_TYPE_CODE_INVALID);
         }
     }
