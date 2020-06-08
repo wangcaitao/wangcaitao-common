@@ -1,6 +1,5 @@
 package com.wangcaitao.common.util.validate;
 
-import com.wangcaitao.common.constant.CommonErrorEnum;
 import com.wangcaitao.common.exception.ResultException;
 import org.apache.commons.lang3.StringUtils;
 
@@ -19,7 +18,7 @@ public class StringValidateUtils {
      */
     public static void notEmpty(String param, String paramComment) {
         if (StringUtils.isEmpty(param)) {
-            throw new ResultException(CommonErrorEnum.ID_CARD_NO_INVALID);
+            throw new ResultException(paramComment + " 不能为空");
         }
     }
 
