@@ -1,8 +1,6 @@
 package com.wangcaitao.common.entity;
 
-import com.wangcaitao.common.constant.CommonErrorEnum;
 import com.wangcaitao.common.constant.PageConstant;
-import com.wangcaitao.common.exception.ResultException;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -17,12 +15,12 @@ public class BaseQuery implements Serializable {
     private static final long serialVersionUID = 7718625033381773834L;
 
     /**
-     * 当前页码，默认第1页
+     * 当前页码，默认第 1 页
      */
     private Integer pageNum;
 
     /**
-     * 每页大小，默认每页10条
+     * 每页大小，默认每页 10 条
      */
     private Integer pageSize;
 
@@ -40,24 +38,6 @@ public class BaseQuery implements Serializable {
      * 是否需要分页, 默认分页. 0: 不需要, 1: 需要
      */
     private Boolean pagination;
-
-    /**
-     * 参数校验
-     */
-    public void validate() {
-        validate(true);
-    }
-
-    /**
-     * 参数校验
-     *
-     * @param isValidatePageSize 是否校验每页大小
-     */
-    public void validate(boolean isValidatePageSize) {
-        if (isValidatePageSize && this.getPageSize() > PageConstant.MAX_PAGE_SIZE) {
-            throw new ResultException(CommonErrorEnum.PAGE_SIZE_OVER_MAX);
-        }
-    }
 
     /**
      * get pagination
