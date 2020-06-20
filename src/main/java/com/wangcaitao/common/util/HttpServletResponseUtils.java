@@ -19,6 +19,9 @@ public class HttpServletResponseUtils {
      * @throws IOException IOException
      */
     public static void output(HttpServletResponse response, String content) throws IOException {
+        response.setHeader("Access-Control-Allow-Headers", "*");
+        response.setHeader("Access-Control-Allow-Methods", "*");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType(ContentTypeConstant.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         PrintWriter printWriter = response.getWriter();
