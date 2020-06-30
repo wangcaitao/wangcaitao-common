@@ -118,8 +118,6 @@ public class HttpServletRequestUtils {
                 log.error("get param error.", e);
             }
 
-        } else {
-            log.error("not support. content-type: {}", contentType);
         }
 
         return param.toString();
